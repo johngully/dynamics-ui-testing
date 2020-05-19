@@ -1,0 +1,27 @@
+{
+  "name": "ui-testing",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^26.0.1",
+    "jest-environment-webdriver": "./modules/jest-environment-webdriver"
+  },
+  "jest": {
+    "testTimeout": 60000,
+    "testEnvironment": "jest-environment-webdriver",
+    "testEnvironmentOptions": {
+      "browser": "chrome",
+      "capabilities": {
+        "chromeOptions": {
+          "w3c": false
+        }
+      }
+    }
+  }
+}
