@@ -9,8 +9,8 @@ const env = require('../environmentData');
 
 describe('Login Flow', () => {
 
-  const usernameText = testdata.username;
-  const passwordText = testdata.password;
+  const usernameText = env.username;
+  const passwordText = env.password;
 
   test('enter login flow', async () => {
     const page = new LoginPage();
