@@ -5,6 +5,7 @@ const { LoginPage, UsernamePage, PasswordPage, ConfirmationPage } = require('../
 const { LandingPage } = require('../pages/landingPage');
 const { ApplicationPage } = require('../pages/applicationPage');
 const { LeadsPage, NewLeadPage } = require('../pages/leadPages');
+const { FOApplicationPage } = require('../pages/foApplicationPage');
 const env = require('../environmentData');
 
 describe('Login Flow', () => {
@@ -118,11 +119,13 @@ describe('Create a lead', () => {
   
 });
 
-describe('Navigate to F&O', () => {
-  const foLandingPageUrl = 'https://td-test.sandbox.operations.dynamics.com';
+describe('F&O Application Flow', () => {
 
-  test('navigate to F&O', async () => {
-    await browser.get(foLandingPageUrl);
+  test('Navigate to F&O', async () => {
+    const page = new FOApplicationPage();
+    await browser.get(page.url);
+    await browser.wait(until.titleContains(page.title));
+    
     await browser.sleep(5000);
   })
 
