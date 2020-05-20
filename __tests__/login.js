@@ -1,11 +1,8 @@
 /**
  * @jest-environment jest-environment-webdriver
  */
-const { LoginPage, UsernamePage, PasswordPage, ConfirmationPage } = require('../pages/authenticationPages');
-const { LandingPage } = require('../pages/landingPage');
+const { UsernamePage, PasswordPage, ConfirmationPage } = require('../pages/authenticationPages');
 const { ApplicationPage } = require('../pages/applicationPage');
-const { LeadsPage, NewLeadPage } = require('../pages/leadPages');
-const { FOApplicationPage } = require('../pages/foApplicationPage');
 const env = require('../environmentData');
 
 describe('Login Flow', () => {
@@ -14,7 +11,7 @@ describe('Login Flow', () => {
   const passwordText = env.password;
 
   test('enter login flow', async () => {
-    const page = new LoginPage();
+    const page = new ApplicationPage();
     await browser.get(page.url);
   })
 
@@ -62,71 +59,11 @@ describe('Login Flow', () => {
   })
 
   test('confirm landing page', async () => {
-    const page = new LandingPage();
-    await browser.wait(until.urlContains(page.url));
-  })
-  
-});
-
-describe('Create a lead', () => {
-  const topicText = "Automated Test Lead";
-  const firstNameText = "Automated Test First Name";
-  const lastNameText = "Automated Test Last Name";
-  const responsibilityGroupText = "DAL";
-  const profitCenterText = "Dallas Construction";
-  const departmentText = "Construction";
-
-
-  test('enter lead flow', async () => {
     const page = new ApplicationPage();
+    await browser.wait(until.urlContains(page.url));
     await browser.wait(until.titleContains(page.title));
-    await page.openSalesMenu();
-    await page.navigateToLeads();
-  })
-
-  test('create a new lead', async () => {
-    
-    const page = new LeadsPage();
-    await browser.wait(until.titleContains(page.title));
-    await page.newLead();
-  })
-
-  test('enter lead data', async () => {
-    const page = new NewLeadPage();
-    await browser.wait(until.titleContains(page.title));
-    await page.setIFrameFocus();
-
-    await page.topic(topicText);
-    await page.fullName(firstNameText, lastNameText);
-    await page.responsibilityGroup(responsibilityGroupText);
-    await page.profitCenter(profitCenterText);
-    await page.department(departmentText);
-    
-    await page.setIFrameFocusToParent();
-    await page.saveAndClose();
-  })
-
-  test('confirm landing page', async () => {
-    const page = new LeadsPage();
-    await browser.wait(until.titleContains(page.title));
-  })
-
-  test('remove new lead', async () => {
-    const page = new LeadsPage();
-    await page.selectLead(0);
-    await page.deleteSelectedLeads();
+    const title = await browser.getTitle();
+    expect(title).toContain(page.title);
   })
   
 });
-
-describe('F&O Application Flow', () => {
-
-  test('Navigate to F&O', async () => {
-    const page = new FOApplicationPage();
-    await browser.get(page.url);
-    await browser.wait(until.titleContains(page.title));
-    
-    await browser.sleep(5000);
-  })
-
-})

@@ -1,10 +1,10 @@
-const landingPageUrl = 'tderprtest.crm.dynamics.com/main.aspx';
-const landingPageTitle = 'Dashboards'
+const url = 'https://tderprtest.crm.dynamics.com/';
+const title = 'Dashboards'
 
 class ApplicationPage {
 
-    get url() { return landingPageUrl; }
-    get title() { return landingPageTitle; }
+    get url() { return url; }
+    get title() { return title; }
     
     get salesMenuButton() { return browser.findElement(by.css('a[title=Sales]')); }
     get leadsButtons() { return browser.findElement(by.id('nav_leads')); }

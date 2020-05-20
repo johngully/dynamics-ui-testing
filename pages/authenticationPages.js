@@ -1,13 +1,6 @@
-const loginPageUrl = 'https://tderprtest.crm.dynamics.com/';
 const usernamePageUrl = 'login.microsoftonline.com';
 const passwordPageUrl = 'adfs.tdindustries.com/adfs/ls';
 const confirmationPageUrl = 'login.microsoftonline.com';
-
-class LoginPage {
-
-  get url() { return loginPageUrl; }
-
-}
 
 class UsernamePage {
 
@@ -47,7 +40,6 @@ class ConfirmationPage {
 }
 
 module.exports = { 
-  LoginPage,
   UsernamePage,
   PasswordPage,
   ConfirmationPage
