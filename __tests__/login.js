@@ -117,3 +117,13 @@ describe('Create a lead', () => {
   })
   
 });
+
+describe('Navigate to F&O', () => {
+  const foLandingPageUrl = 'https://td-test.sandbox.operations.dynamics.com';
+
+  test('navigate to F&O', async () => {
+    await browser.get(foLandingPageUrl);
+    await browser.sleep(5000);
+  })
+
+})
